@@ -30,7 +30,7 @@ app.get("/test", async (request, response) => {
                         console.log("Error writing to the stream");
                         console.log(err);
                     }; fileStream.on("finish", function() {
-                            exec("rojo serve", (error, stdout, stderr) => {
+                            exec("dir", (error, stdout, stderr) => {
                                 if (error) {
                                     console.log(`error: ${error.message}`);
                                     return;
