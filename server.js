@@ -1,8 +1,6 @@
 console.log("Up and Ready");
 
-const {
-    exec
-} = require("child_process");
+const {exec} = require("child_process");
 
 const express = require("express");
 
@@ -19,7 +17,11 @@ const http_options = {
 
 app.use(express.static("public"));
 
-app.get("/", async (request, response) => {
+app.get("/", async(req,res) => {
+   response.send("it works"); 
+});
+
+app.get("/test", async (request, response) => {
 
                 request(http_options, function(error, response, body) {
                     if (error) throw new Error(error);
