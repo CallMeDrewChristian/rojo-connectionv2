@@ -1,0 +1,27 @@
+{
+  "name": "CMDC Rojo Connection",
+  "version": "0.0.1",
+  "description": "IT WORKS SOMEHOW",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "googleapis": "^92.0.0" 
+  },
+  "repository": {
+    "url": "https://cmdc-rojo.herokuapp.com/"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "heroku"
+  ]
+}
