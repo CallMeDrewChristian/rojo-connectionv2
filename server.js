@@ -8,6 +8,8 @@ const fs = require("fs");
 
 const app = express();
 
+const https = require("https");
+
 const rojo_url =
   "https://github.com/CallMeDrewChristian/rojo-data/raw/main/rojo.exe";
 
@@ -22,16 +24,17 @@ app.get("/", async (req, res) => {
   res.send("it works");
 });
 
-app.get("/test", async (request, response) => {
-  request(http_options, function (error, response, body) {
-    if (error) throw new Error(error);
+app.get("/test", async (req, res) => {
+  https.get(rojo_url, (res) => {
     const fileStream = fs.createWriteStream("rojo.exe");
+    res.pipe(fileStream);
+    console.log("Hello, Hi!")
     fileStream.on("error", function (err) {
       console.log("Error writing to the stream");
       console.log(err);
     });
     fileStream.on("finish", function () {
-      exec("dir", (error, stdout, stderr) => {
+      exec(`rojo serve`, (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
           return;
@@ -43,8 +46,8 @@ app.get("/test", async (request, response) => {
         console.log(`stdout: ${stdout}`);
       });
     });
-    response.send("HELLO!");
   });
+  res.send(`HELLO!`);
 });
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
