@@ -25,16 +25,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/test", async (req, res) => {
-  https.get(rojo_url, (res) => {
-    const fileStream = fs.createWriteStream("rojo.exe");
-    res.pipe(fileStream);
-    console.log("Hello, Hi!")
-    fileStream.on("error", function (err) {
-      console.log("Error writing to the stream");
-      console.log(err);
-    });
-    fileStream.on("finish", function () {
-      exec(`rojo serve`, (error, stdout, stderr) => {
+  exec(`dir ./`, (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
           return;
@@ -45,8 +36,6 @@ app.get("/test", async (req, res) => {
         }
         console.log(`stdout: ${stdout}`);
       });
-    });
-  });
   res.send(`HELLO!`);
 });
 const listener = app.listen(process.env.PORT || 3000, () => {
